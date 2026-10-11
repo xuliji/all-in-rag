@@ -1,11 +1,9 @@
 from langchain_experimental.text_splitter import SemanticChunker
-from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_community.document_loaders import TextLoader
+from langchain_ollama import OllamaEmbeddings
 
-embeddings = HuggingFaceEmbeddings(
-    model_name="BAAI/bge-small-zh-v1.5",
-    model_kwargs={'device': 'cpu'},
-    encode_kwargs={'normalize_embeddings': True}
+embeddings = OllamaEmbeddings(
+    model="embeddinggemma-2:latest",
 )
 
 # 初始化 SemanticChunker
