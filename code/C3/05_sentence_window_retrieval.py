@@ -1,13 +1,16 @@
-import os
-from llama_index.core.node_parser import SentenceWindowNodeParser, SentenceSplitter
 from llama_index.core import VectorStoreIndex, SimpleDirectoryReader, Settings
-from llama_index.llms.deepseek import DeepSeek
-from llama_index.embeddings.huggingface import HuggingFaceEmbedding
+from llama_index.core.node_parser import SentenceWindowNodeParser, SentenceSplitter
 from llama_index.core.postprocessor import MetadataReplacementPostProcessor
+from llama_index.embeddings.ollama import OllamaEmbedding
+from llama_index.llms.ollama import Ollama
 
 # 1. 配置模型
-Settings.llm = DeepSeek(model="deepseek-chat", temperature=0.1, api_key=os.getenv("DEEPSEEK_API_KEY"))
-Settings.embed_model = HuggingFaceEmbedding(model_name="BAAI/bge-small-en")
+Settings.llm = Ollama(
+    model="qwen:4b",  # 如果你是qwen2.5就改成 qwen2.5:4b
+    temperature=0.1,
+    request_timeout=300.0,  # 超时时间，PDF长文档建议开大一点
+)
+Settings.embed_model = OllamaEmbedding(model_name="embeddinggemma-2:latest")
 
 # 2. 加载文档
 documents = SimpleDirectoryReader(

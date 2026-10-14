@@ -1,20 +1,19 @@
-import os
 import pandas as pd
 from dotenv import load_dotenv
 from llama_index.core import VectorStoreIndex
 from llama_index.core.schema import IndexNode
+from llama_index.embeddings.ollama import OllamaEmbedding
 from llama_index.experimental.query_engine import PandasQueryEngine
 from llama_index.core.retrievers import RecursiveRetriever
 from llama_index.core.query_engine import RetrieverQueryEngine
-from llama_index.llms.deepseek import DeepSeek
-from llama_index.embeddings.huggingface import HuggingFaceEmbedding
+from llama_index.llms.ollama import Ollama
 from llama_index.core import Settings
 
 load_dotenv()
 
 # 配置模型
-Settings.llm = DeepSeek(model="deepseek-chat", api_key=os.getenv("DEEPSEEK_API_KEY"))
-Settings.embed_model = HuggingFaceEmbedding(model_name="BAAI/bge-small-zh-v1.5")
+Settings.llm = Ollama(model="qwen:4b")
+Settings.embed_model = OllamaEmbedding(model_name="embeddinggemma-2:latest")
 
 # 1.加载数据并为每个工作表创建查询引擎和摘要节点
 excel_file = '../../data/C3/excel/movie.xlsx'
