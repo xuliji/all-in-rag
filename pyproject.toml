@@ -6,3 +6,8 @@ dependencies = [
     "langchain-ollama>=1.1.0",
     "pandas-stubs~=2.2.3",
 ]
+
+[[tool.uv.index]]
+name = "pypi"
+url = "https://pypi.org/simple"
+default = true
