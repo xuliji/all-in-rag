@@ -15,6 +15,7 @@ langchain==0.3.26
 langchain-core==0.3.71
 langchain-community==0.3.27
 langchain-huggingface==0.3.1
+langchain-ollama==0.3.6
 langchain-openai==0.3.28
 langchain-text-splitters==0.3.8
 langchain-experimental==0.3.4
@@ -46,7 +47,10 @@ einops==0.8.1
 ftfy==6.3.1
 llama-index-experimental==0.5.6
 openpyxl==3.1.5
-bilibili-api-python==17.3.0
+bilibili-api-python==17.4.2
+# aiohttp 和 httpx2 的有界解压接口需要新版 Brotli。
+Brotli>=1.2.1
+brotlicffi>=1.2.1.0
 lark==1.2.2
 lazy_loader==0.4
 pyarrow==20.0.0

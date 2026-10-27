@@ -1,10 +1,10 @@
 import os
 from langchain_deepseek import ChatDeepSeek 
 from langchain_community.document_loaders import BiliBiliLoader
-from langchain.chains.query_constructor.base import AttributeInfo
+from langchain_classic.chains.query_constructor.base import AttributeInfo
 from openai import OpenAI
 from langchain_community.vectorstores import Chroma
-from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_ollama import OllamaEmbeddings
 import logging
 
 logging.basicConfig(level=logging.INFO)
@@ -44,7 +44,12 @@ if not bili:
     exit()
 
 # 2. 创建向量存储
-embed_model = HuggingFaceEmbeddings(model_name="BAAI/bge-small-zh-v1.5")
+embed_model = OllamaEmbeddings(
+    model=os.getenv("OLLAMA_EMBEDDING_MODEL", "qwen3-embedding:latest"),
+    base_url=os.getenv("OLLAMA_BASE_URL", "http://localhost:11434"),
+    # 直接连接本机 Ollama，避免 HTTPX 使用系统代理后返回 503。
+    client_kwargs={"trust_env": False},
+)
 vectorstore = Chroma.from_documents(bili, embed_model)
 
 # 3. 配置元数据字段信息

@@ -3,8 +3,23 @@ name = "all-in-rag"
 version = "0.1.0"
 requires-python = ">=3.13"
 dependencies = [
+    "bilibili-api-python==17.4.2",
+    "brotli>=1.2.1",
+    "brotlicffi>=1.2.1.0",
+    "langchain>=1.4.7",
+    "langchain-classic>=1.0.8",
+    "langchain-community>=0.4.2",
+    "langchain-deepseek>=1.1.1",
+    "langchain-huggingface>=1.2.3",
     "langchain-ollama>=1.1.0",
+    "lark>=1.2.2",
     "pandas-stubs~=2.2.3",
+    "pymilvus[model]>=3.0.2",
+    "scikit-learn>=1.9.1",
+    "scipy>=1.18.1",
+    "scipy-stubs~=1.18.1",
+    "torch>=2.14.1",
+    "transformers>=5.21.0",
 ]
 
 [[tool.uv.index]]
