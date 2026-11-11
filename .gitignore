@@ -73,3 +73,5 @@ rag/
 *.secret
 
 volumes/
+
+*.db
