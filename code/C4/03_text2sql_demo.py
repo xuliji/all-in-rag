@@ -2,6 +2,11 @@ import os
 import sys
 import sqlite3
 
+from dotenv import load_dotenv
+
+# 加载 .env 中的 DEEPSEEK_API_KEY 等配置；override=True 表示以文件中的值为准。
+load_dotenv(override=True)
+
 # 添加text2sql模块路径
 sys.path.append(os.path.join(os.path.dirname(__file__), 'text2sql'))
 
